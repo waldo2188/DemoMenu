@@ -5,7 +5,7 @@
 /app/logs/
 /app/bootstrap.php.cache
 /nbproject/
-/web/bundle/
+/web/bundles/
 /vendor/
 composer.lock
 
