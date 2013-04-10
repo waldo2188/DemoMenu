@@ -1,0 +1,11 @@
+.project
+/app/config/parameters.yml
+/app/config/parameters-dev.yml
+/app/cache/
+/app/logs/
+/app/bootstrap.php.cache
+/nbproject/
+/web/bundle/
+/vendor/
+composer.lock
+
