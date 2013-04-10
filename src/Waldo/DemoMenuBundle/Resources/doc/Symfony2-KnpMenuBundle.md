@@ -7,6 +7,8 @@ Ce Bundle permet de créer facilement des menus. La [documentation](https://gith
 
 Ce que je vais vous présenté ici, c'est une gestion un peu plus avancé des menus avec en prime (dans un prochain article), la possibilité de créer un breadcrumb/fil d'Ariane en deux coups de cuillère à pot.
 
+Tout le code est disponible sur (mon github)[https://github.com/waldo2188/DemoMenu]. Si vous voulez tester en live ça sera plus simple !
+
 Dans un premier temps voyons un peux l'arborescence de notre menu final.
 Notre menu va comporter des entrées cachées, elles serviront à la construction du Breadcrumb. 
 
@@ -35,5 +37,10 @@ Maintenant nous allons attribuer une route (lien + nom) à chaque entré du menu
 - Ajouter ["/article/ajouter", _article_ajouter]
 - Éditer ["/article/editer/{id}", _article_editer]
 
-On va créer un controller ``DefaultController`` sdf sdf
+On va créer un controller ``DefaultController`` avec le code qui se trouve à cette adresse : [https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Controller/DefaultController.php](https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Controller/DefaultController.php)
 
+Le point important de ce Controller c'est l'option `defaults` de la *Route*. Cette option permet de donner une valeur par défaut à une variable qui est passé dans l'URL.
+
+Maintenant si vous allez voir dans le fichier (Menu/Builder.php)[https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Menu/Builder.php]
+
+C'est ici que l'on vas construire l'arborescence du menu
