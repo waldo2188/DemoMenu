@@ -22,10 +22,10 @@ class Builder extends ContainerAware
         $menu['Utilisateurs']->addChild('Actif', array('route' => '_utilisateur_actif_list'));
         
         $menu['Utilisateurs']->addChild('Ajouter', array('route' => '_utilisateur_ajouter'))
-                ->setDisplay(false); // N'affiche pas l'entré dans l'arborescence du menu
+                ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
         $menu['Utilisateurs']->addChild('Éditer', array('route' => '_utilisateur_editer'))
-                ->setDisplay(false); // N'affiche pas l'entré dans l'arborescence du menu
+                ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
 
         $menu->addChild('Articles', array('route' => '_article_list'));
@@ -33,13 +33,13 @@ class Builder extends ContainerAware
         $menu['Articles']->addChild('A venir', array('route' => '_article_a_venir_list'));
         
         $menu['Articles']->addChild('Commentaires', array('route' => '_article_commentaires'))
-                ->setDisplay(false); // N'affiche pas l'entré dans l'arborescence du menu
+                ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
         $menu['Articles']->addChild('Ajouter', array('route' => '_article_ajouter'))
-                ->setDisplay(false); // N'affiche pas l'entré dans l'arborescence du menu
+                ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
         $menu['Articles']->addChild('Éditer', array('route' => '_article_editer'))
-                ->setDisplay(false); // N'affiche pas l'entré dans l'arborescence du menu
+                ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
       
         return $menu;
