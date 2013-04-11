@@ -3,12 +3,33 @@
     <head>
         <meta charset="utf-8" >
         <title>DemoMenuBundle</title>
+        {% stylesheets '@WaldoDemoMenuBundle/Resources/public/css/*' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
     </head>
     <body>
 
-        <div>
+        <nav class="breadcrumb">
+            {% block breadcrumb %}
+            {% spaceless %}
+            <nav class="breadcrumb">
+            {% set currentItem = knp_menu_get('WaldoDemoMenuBundle:Builder:breadCrumb').getBreadcrumbsArray %}
+            {% for item in currentItem %}
+                {% if loop.index != 1 %}
+                    {% if loop.index > 2 %} &gt; {% endif %}
+                    {% if not loop.last %}<a href="{{ item.uri }}">{{ item.label }}</a>
+                    {% else %}<span>{{ item.label }}</span>{% endif %}
+                {% endif %}
+            {% endfor %}
+            </nav>
+           {% endspaceless %}
+           {% endblock %}
+        </nav>
+
+        <nav class="menu">
 {{ knp_menu_render('WaldoDemoMenuBundle:Builder:menuPrincipal') }}
-        </div>
+        </nav>
 
         <div>
 {% block body %}{% endblock body %}

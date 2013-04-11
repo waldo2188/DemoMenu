@@ -22,6 +22,9 @@ class WaldoDemoMenuExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        // Evite d'avoir à ajouter le nom du bundle "WaldoDemoMenuBundle" dans le fichier app/config/config.yml dans assetic.bundles
+        $container->setParameter("assetic.bundles", array_merge($container->getParameter("assetic.bundles"), array('WaldoDemoMenuBundle')));
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

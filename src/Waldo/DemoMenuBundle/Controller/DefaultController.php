@@ -62,10 +62,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/articles/a-venir", name="_article_a_venir_list")
+     * @Route("/article/{idArticle}", name="_article_blog", defaults={"idArticle"=null})
      * @Template()
      */
-    public function articlesAVenirAction()
+    public function articleBlogAction($idArticle)
     {
         return array();
     }
@@ -79,14 +79,6 @@ class DefaultController extends Controller
         return array();
     }
 
-    /**
-     * @Route("/article/ajouter", name="_article_ajouter", defaults={"id"=null})
-     * @Route("/article/editer/{id}", name="_article_editer", defaults={"id"=null})
-     * @Template()
-     */
-    public function articleEditionAction()
-    {
-        return array();
-    }
+    
 
 }

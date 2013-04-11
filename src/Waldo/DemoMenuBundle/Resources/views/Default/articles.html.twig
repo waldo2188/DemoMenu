@@ -3,8 +3,6 @@
 {% block body %}
 Page Article
 <p>
-    <a href="{{ url('_article_ajouter') }}">Ajouter un article</a> <br />
-    <a href="{{ url('_article_editer', {id:"loutre"}) }}">Éditer l'article sur la reproduction des loutres en Loire-Atlantique</a><br />
     <a href="{{ url('_article_commentaires', {idArticle:"loutre"}) }}">Voir les commentaires sur la reproduction des loutres en Loire-Atlantique</a>
 </p>
 {% endblock body %}

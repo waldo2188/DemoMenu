@@ -35,7 +35,6 @@ Maintenant nous allons attribuer une route (lien + nom) à chaque entré du menu
 - Ajouter ["/utilisateur/ajouter", _utilisateur_ajouter]
 - Éditer ["/utilisateur/editer/{id}", _utilisateur_editer]
 - Articles ["/articles", _article_list]
-- A venir ["/articles/a-venir", _article_a_venir_list]
 - Les loutres à la plage ["/article/{idArticle}", _article_blog]
 - Les loutres à la montagne ["/article/{idArticle}", _article_blog]
 - Les loutres en tournée dans les bars ["/article/{idArticle}", _article_blog]
