@@ -1,0 +1,18 @@
+nav a {
+    color: #24243C;
+}
+
+nav.menu li.current:before {
+    content: "->";
+    font-weight: bold;
+    color: #504250;
+}
+nav.menu li.current_ancestor > a {
+    font-weight: bold;
+    color: #504250;
+}
+
+nav.menu li.current > a {
+    font-weight: bold;
+    color: #9C7F6F;
+}
