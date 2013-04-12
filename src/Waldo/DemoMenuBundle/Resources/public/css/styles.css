@@ -16,3 +16,15 @@ nav.menu li.current > a {
     font-weight: bold;
     color: #9C7F6F;
 }
+
+div.block {
+    border: 1px solid #9C7F6F;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+div.block h1 {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}

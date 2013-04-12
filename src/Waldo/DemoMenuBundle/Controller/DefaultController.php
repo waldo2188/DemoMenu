@@ -67,7 +67,7 @@ class DefaultController extends Controller
      */
     public function articleBlogAction($idArticle)
     {
-        return array();
+        return array("article" => $idArticle);
     }
 
     /**
