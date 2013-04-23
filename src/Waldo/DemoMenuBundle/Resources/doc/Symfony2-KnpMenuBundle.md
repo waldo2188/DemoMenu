@@ -145,7 +145,7 @@ Donc pour accéder au menu ``Niveau 3``, il suffit simplement d'utiliser se para
 ```php
 $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-1')));
 
-        $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
+$menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
 ```
 
 Voilà, pas si difficile que cela l'utilisation de ce bundle ?
