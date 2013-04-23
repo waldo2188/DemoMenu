@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" >
         <title>DemoMenuBundle</title>
-        {% stylesheets '@WaldoDemoMenuBundle/Resources/public/css/*' filter='cssrewrite' %}
+        {% stylesheets '@WaldoDemoMenuBundle/Resources/public/css/*' output='css/style.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
