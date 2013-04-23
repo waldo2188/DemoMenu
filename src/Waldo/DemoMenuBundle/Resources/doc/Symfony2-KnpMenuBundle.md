@@ -105,7 +105,7 @@ $menu['Articles']->addChild('Les loutres à la plage', array('route' => '_articl
         $menu['Articles']->addChild('Les loutres en tournée dans les bars', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'loutre-a-bierre')));
 ```
 
-Le plus fun, c'est qu'au rendu du menu, l'entrée taggé par la class CSS *current* (c.a.d. Le lien en cours d'utilisation), et bien ce sera la bonne entrée. Le KnpMenuBundle, par le biais de class ``Voter``, permet grâce à la route et à ces paramètres de faire la correspondance avec ce que vous avez déclarer dans le fichier Builder. Et avec un peu de CSS on peu faire ce que l'on  veux !
+Le plus fun, c'est qu'au rendu du menu, l'entrée taggé par la class CSS *current* (c.a.d. Le lien en cours d'utilisation), et bien ce sera la bonne entrée. Le KnpMenuBundle, par le biais de classes ``Voter``, permet grâce à la route et à ces paramètres de faire la correspondance avec ce que vous avez déclarer dans le fichier Builder. Et avec un peu de CSS on peu faire ce que l'on  veux !
 
 
 
@@ -113,3 +113,39 @@ Le plus fun, c'est qu'au rendu du menu, l'entrée taggé par la class CSS *curre
 Menu version Über Épicé
 -----------------------
 Ce que nous avons vue précédemment est un prémisse. Corsons les choses en créant la partie *Niveau 0* à *Niveau 5*.
+
+Avec le KnpMenuBundle il est possible de chaîner la création d'enfant,
+la méthode ``addChild`` retournant le nœud (``Knp\Menu\MenuItem
+``) nouvellement créé.
+
+```php
+$menu->addChild('Niveau 0', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-0')))
+                ->addChild('Niveau 1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-1')))
+                    ->addChild('Niveau 2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-2')))
+                        ->addChild('Niveau 3', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3')))
+                            ->addChild('Niveau 4', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-4')))
+                                ->addChild('Niveau 5', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-5')));
+```
+
+On se retrouve donc avec une arborescence de ce type : 
+```
+Niveau 0
+|_  Niveau1
+    |_  Niveau 2
+        |_  Niveau 3
+...
+```
+
+Ok, c'est cool comme possibilité, mais comment faire pour ajouter plus d'un enfant à un nœud ?
+
+De ce que j'ai pue tester, l'objet ``Knp\Menu\MenuItem`` peut se comporter comme un tableau multidimensionnel (un tableau de tableau de tableau...).
+
+Donc pour accéder au menu ``Niveau 3``, il suffit simplement d'utiliser se paradigme.
+
+```php
+$menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-1')));
+
+        $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
+```
+
+Voilà, pas si difficile que cela l'utilisation de ce bundle ?
