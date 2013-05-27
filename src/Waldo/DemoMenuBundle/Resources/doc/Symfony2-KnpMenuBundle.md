@@ -12,6 +12,12 @@ Tout le code est disponible sur (mon github)[https://github.com/waldo2188/DemoMe
 Le menu !
 =========
 
+- [Menu version Vanille](#menu-version-vanille)
+- [Menu version Épicé](#menu-version-pic)
+- [Menu version Über Épicé](#menu-version-ber-pic)
+- [Génération du BreadCrumb](#gnration-du-breadcrumb)
+
+
 Menu version Vanille
 --------------------
 
@@ -152,7 +158,7 @@ $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' 
 
 Génération du BreadCrumb
 -------------------------
-Pour pouvoir générer un BreadCrumb nous alons commencer par ajouter une méthode dans la class `Builder` :
+Pour pouvoir générer un BreadCrumb nous allons commencer par ajouter une méthode dans la class `Builder` :
 ```php
 /**
  * Permet de générer le BreadCrumb
@@ -188,9 +194,9 @@ public function breadCrumb(FactoryInterface $factory, array $options)
     return $current;
 }
 ```
-Cette méthode permet de filtrer les entrées du menu pour en extraire uniquement celle qui sont *en cours*.
+Cette méthode permet de filtrer les entrées du menu pour en extraire uniquement celles qui sont *en cours*.
 
-Il ne nous reste plus qu'à afficher notre BreadCrump dans le template :
+Il ne nous reste plus qu'à traiter l'affichage notre BreadCrump dans le template :
 ```twig
 <nav class="breadcrumb">
     {% block breadcrumb %}
@@ -209,5 +215,3 @@ Il ne nous reste plus qu'à afficher notre BreadCrump dans le template :
    {% endblock %}
 </nav>
 ```
-
-
