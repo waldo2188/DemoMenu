@@ -11,7 +11,7 @@ class BreadcrumpTest extends WebTestCase
     
     public function setUp()
     {
-        $this->client = static::createClient();;
+        $this->client = static::createClient();
     }
     
     public function tearDown()
