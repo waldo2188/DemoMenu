@@ -5,9 +5,6 @@ namespace Waldo\DemoMenuBundle\Tests\BreadcrumpTest;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/**
- * @group tata
- */
 class CnertaBreadcrumpTest extends WebTestCase
 {
     private $client;
