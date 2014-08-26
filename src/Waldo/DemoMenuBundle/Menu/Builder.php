@@ -4,11 +4,6 @@ namespace Waldo\DemoMenuBundle\Menu;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\Iterator\CurrentItemFilterIterator;
-use Knp\Menu\Iterator\RecursiveItemIterator;
-use Knp\Menu\MenuItem;
-use \RecursiveIteratorIterator;
-use \ArrayIterator;
 
 class Builder extends ContainerAware
 {
@@ -52,44 +47,6 @@ class Builder extends ContainerAware
         $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
 
        
-
-
         return $menu;
     }
-
-    /**
-     * Permet de générer le BreadCrumb
-     * @param \Knp\Menu\FactoryInterface $factory
-     * @param array $options
-     * 
-     * @return \Knp\Menu\Iterator\CurrentItemFilterIterator
-     */
-    public function breadCrumb(FactoryInterface $factory, array $options)
-    {
-        $menu = $this->menuPrincipal($factory, $options);
-
-        /* @var $matcher \Knp\Menu\Matcher\Matcher */
-        $matcher = $this->container->get('knp_menu.matcher');
-
-        $treeIterator = new RecursiveIteratorIterator(
-                new RecursiveItemIterator(
-                new ArrayIterator(array($menu))
-                ), RecursiveIteratorIterator::SELF_FIRST
-        );
-
-        $iterator = new CurrentItemFilterIterator($treeIterator, $matcher);
-
-        // Set Current as an empty Item in order to avoid exceptions on knp_menu_get
-        $current = new MenuItem('', $factory);
-
-        foreach ($iterator as $item) {
-            $item->setCurrent(true);
-            $current = $item;
-            break;
-        }
-
-        return $current;
-    }
-
-
 }
