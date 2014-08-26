@@ -15,6 +15,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Cnerta\BreadcrumbBundle\CnertaBreadcrumbBundle(),
             new Waldo\DemoMenuBundle\WaldoDemoMenuBundle(),
         );
 
