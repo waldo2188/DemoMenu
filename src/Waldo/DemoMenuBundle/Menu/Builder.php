@@ -4,11 +4,6 @@ namespace Waldo\DemoMenuBundle\Menu;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\Iterator\CurrentItemFilterIterator;
-use Knp\Menu\Iterator\RecursiveItemIterator;
-use Knp\Menu\MenuItem;
-use \RecursiveIteratorIterator;
-use \ArrayIterator;
 
 class Builder extends ContainerAware
 {
@@ -51,10 +46,8 @@ class Builder extends ContainerAware
         $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-1')));
         $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
 
-
-
-
         return $menu;
     }
 
 }
+
