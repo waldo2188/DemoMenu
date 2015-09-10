@@ -15,14 +15,14 @@ class Builder extends ContainerAware
 
     public function menuPrincipal(FactoryInterface $factory, array $options)
     {
-       
+
         $menu = $factory->createItem('root');
 
         $menu->addChild('Accueil', array('route' => '_welcome'));
 
         $menu->addChild('Utilisateurs', array('route' => '_utilisateur_list'));
         $menu['Utilisateurs']->addChild('Actif', array('route' => '_utilisateur_actif_list'));
-        
+
         $menu['Utilisateurs']->addChild('Ajouter', array('route' => '_utilisateur_ajouter'))
                 ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
 
@@ -38,58 +38,23 @@ class Builder extends ContainerAware
 
         $menu['Articles']->addChild('Commentaires', array('route' => '_article_commentaires'))
                 ->setDisplay(false); // N'affiche pas l'entrée dans l'arborescence du menu
-        
-        // Création d'une arborescence de menu        
+
+        // Création d'une arborescence de menu
         $menu->addChild('Niveau 0', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-0')))
                 ->addChild('Niveau 1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-1')))
                     ->addChild('Niveau 2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-2')))
                         ->addChild('Niveau 3', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3')))
                             ->addChild('Niveau 4', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-4')))
                                 ->addChild('Niveau 5', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-5')));
-        
+
         // Ajout de deux sous menu à un sous menu
         $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.1', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-1')));
         $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-3-2')));
 
-       
+
 
 
         return $menu;
     }
-
-    /**
-     * Permet de générer le BreadCrumb
-     * @param \Knp\Menu\FactoryInterface $factory
-     * @param array $options
-     * 
-     * @return \Knp\Menu\Iterator\CurrentItemFilterIterator
-     */
-    public function breadCrumb(FactoryInterface $factory, array $options)
-    {
-        $menu = $this->menuPrincipal($factory, $options);
-
-        /* @var $matcher \Knp\Menu\Matcher\Matcher */
-        $matcher = $this->container->get('knp_menu.matcher');
-
-        $treeIterator = new RecursiveIteratorIterator(
-                new RecursiveItemIterator(
-                new ArrayIterator(array($menu))
-                ), RecursiveIteratorIterator::SELF_FIRST
-        );
-
-        $iterator = new CurrentItemFilterIterator($treeIterator, $matcher);
-
-        // Set Current as an empty Item in order to avoid exceptions on knp_menu_get
-        $current = new MenuItem('', $factory);
-
-        foreach ($iterator as $item) {
-            $item->setCurrent(true);
-            $current = $item;
-            break;
-        }
-
-        return $current;
-    }
-
 
 }

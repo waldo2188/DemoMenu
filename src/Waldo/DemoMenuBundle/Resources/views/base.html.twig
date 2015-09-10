@@ -4,7 +4,7 @@
         <meta charset="utf-8" >
         <title>DemoMenuBundle</title>
         {% stylesheets '@WaldoDemoMenuBundle/Resources/public/css/*' output='css/style.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
     </head>
@@ -13,31 +13,24 @@
             <h1>Breadcrumb</h1>
             <nav class="breadcrumb">
                 {% block breadcrumb %}
-                {% spaceless %}
-                <nav class="breadcrumb">
-                {% set currentItem = knp_menu_get('WaldoDemoMenuBundle:Builder:breadCrumb').getBreadcrumbsArray %}
-                {% for item in currentItem %}
-                    {% if loop.index != 1 %}
-                        {% if loop.index > 2 %} &gt; {% endif %}
-                        {% if not loop.last %}<a href="{{ item.uri }}">{{ item.label }}</a>
-                        {% else %}<span>{{ item.label }}</span>{% endif %}
-                    {% endif %}
-                {% endfor %}
-                </nav>
-               {% endspaceless %}
-               {% endblock %}
+                    {% spaceless %}
+                        <nav class="breadcrumb">
+                            {{ cnerta_breadcrumb_render('WaldoDemoMenuBundle:Builder:menuPrincipal') }}
+                        </nav>
+                    {% endspaceless %}
+                {% endblock %}
             </nav>
         </div>
 
         <div class="block">
             <h1>Menu</h1>
             <nav class="menu">
-    {{ knp_menu_render('WaldoDemoMenuBundle:Builder:menuPrincipal') }}
+                {{ knp_menu_render('WaldoDemoMenuBundle:Builder:menuPrincipal') }}
             </nav>
         </div>
-            
+
         <div>
-{% block body %}{% endblock body %}
-        </div>
-    </body>
+        {% block body %}{% endblock body %}
+    </div>
+</body>
 </html>

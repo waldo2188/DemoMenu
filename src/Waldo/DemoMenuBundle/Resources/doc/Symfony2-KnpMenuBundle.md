@@ -63,7 +63,7 @@ Maintenant nous allons attribuer une route (lien + nom) à chaque entrée du men
 Nous allons créer un controller [*DefaultController*](https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Controller/DefaultController.php).
 Le point important de ce Controller c'est l'option `defaults` de la *Route*. Cette option permet de donner une valeur par défaut à une variable qui est passée dans l'URL.
 
-La documentation du KnpMenuBundle nous invite à créer un fichier [*Builder*](https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Menu/Builder.php) dans le dossier *Menu*. 
+La documentation du KnpMenuBundle nous invite à créer un fichier [*Builder*](https://github.com/waldo2188/DemoMenu/blob/master/src/Waldo/DemoMenuBundle/Menu/Builder.php) dans le dossier *Menu*.
 
 C'est dans ce fichier que nous allons construire l'arborescence du menu.
 Comme nous pouvons le voir, nous créons un arbre avec une entrée racine
@@ -71,7 +71,7 @@ Comme nous pouvons le voir, nous créons un arbre avec une entrée racine
 $menu = $factory->createItem('root'); // Donnez lui le nom que vous voulez.
 ```
 
-Puis nous y ajoutons trois branches principales : 
+Puis nous y ajoutons trois branches principales :
 ```php
 $menu->addChild('Accueil', array('route' => '_welcome'));
 [...]
@@ -83,7 +83,7 @@ $menu->addChild('Articles', array('route' => '_article_list'));
 Auxquelles nous ajoutons des sous-branches :
 ```php
 $menu['Utilisateurs']->addChild('Actif', array('route' => '_utilisateur_actif_list'));
-        
+
 $menu['Utilisateurs']->addChild('Ajouter', array('route' => '_utilisateur_ajouter'))
         ->setDisplay(false);
 
@@ -134,7 +134,7 @@ $menu->addChild('Niveau 0', array('route' => '_article_blog', 'routeParameters' 
                         ->addChild('Niveau 5', array('route' => '_article_blog', 'routeParameters' => array('idArticle' => 'niveau-5')));
 ```
 
-Nous nous retrouvons donc avec une arborescence de ce type : 
+Nous nous retrouvons donc avec une arborescence de ce type :
 ```
 Niveau 0
 |_  Niveau1
@@ -158,60 +158,5 @@ $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' 
 
 Génération du BreadCrumb
 -------------------------
-Pour pouvoir générer un BreadCrumb nous allons commencer par ajouter une méthode dans la class `Builder` :
-```php
-/**
- * Permet de générer le BreadCrumb
- * @param \Knp\Menu\FactoryInterface $factory
- * @param array $options
- * 
- * @return \Knp\Menu\Iterator\CurrentItemFilterIterator
- */
-public function breadCrumb(FactoryInterface $factory, array $options)
-{
-    $menu = $this->menuPrincipal($factory, $options);
+Pour pouvoir générer un BreadCrumb nous allons simplement utiliser le [CnertaBreadcrumbBundle](https://github.com/AgrosupDijon-Eduter/BreadcrumbBundle)
 
-    /* @var $matcher \Knp\Menu\Matcher\Matcher */
-    $matcher = $this->container->get('knp_menu.matcher');
-
-    $treeIterator = new RecursiveIteratorIterator(
-            new RecursiveItemIterator(
-            new ArrayIterator(array($menu))
-            ), RecursiveIteratorIterator::SELF_FIRST
-    );
-
-    $iterator = new CurrentItemFilterIterator($treeIterator, $matcher);
-
-    // Set Current as an empty Item in order to avoid exceptions on knp_menu_get
-    $current = new MenuItem('', $factory);
-
-    foreach ($iterator as $item) {
-        $item->setCurrent(true);
-        $current = $item;
-        break;
-    }
-
-    return $current;
-}
-```
-Cette méthode permet de filtrer les entrées du menu pour en extraire uniquement celles qui sont *en cours*.
-
-Il ne nous reste plus qu'à traiter l'affichage notre BreadCrump dans le template :
-```twig
-<nav class="breadcrumb">
-    {% block breadcrumb %}
-    {% spaceless %}
-    <nav class="breadcrumb">
-    {% set currentItem = knp_menu_get('WaldoDemoMenuBundle:Builder:breadCrumb').getBreadcrumbsArray %}
-    {% for item in currentItem %}
-        {% if loop.index != 1 %}
-            {% if loop.index > 2 %} &gt; {% endif %}
-            {% if not loop.last %}<a href="{{ item.uri }}">{{ item.label }}</a>
-            {% else %}<span>{{ item.label }}</span>{% endif %}
-        {% endif %}
-    {% endfor %}
-    </nav>
-   {% endspaceless %}
-   {% endblock %}
-</nav>
-```

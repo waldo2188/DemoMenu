@@ -2,4 +2,3 @@ waldo_demo_menu:
     resource: "@WaldoDemoMenuBundle/Controller/"
     type:     annotation
     prefix:   /
-
