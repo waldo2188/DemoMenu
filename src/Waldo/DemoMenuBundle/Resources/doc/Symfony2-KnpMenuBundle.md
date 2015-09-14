@@ -13,12 +13,12 @@ Le menu !
 =========
 
 - [Menu version Vanille](#menu-version-vanille)
-- [Menu version Épicé](#menu-version-pic)
-- [Menu version Über Épicé](#menu-version-ber-pic)
-- [Génération du BreadCrumb](#gnration-du-breadcrumb)
+- [Menu version Épicé](#menu-version-epice)
+- [Menu version Über Épicé](#menu-version-uber-epice)
+- [Génération du BreadCrumb](#generation-du-breadcrumb)
 
 
-Menu version Vanille
+<a name="menu-version-vanille"></a>Menu version Vanille
 --------------------
 
 Le but de cette démonstration est de vous présenter la création d'un menu multi-niveaux, avec des entrées cachées. Dans certaines applications nous ne voulons pas afficher dans notre menu des entrées comme « Ajouter un article » ou « Modifier un article ». Ces entrées seront présentes dans l'application sous forme de bouton dans l'interface. Cependant nous souhaitons que ces entrées fassent partie du breadcrumb.
@@ -101,7 +101,7 @@ Il ne reste plus qu'à afficher le menu dans un [template twig de référence](h
 ```
 Et voilà, le tour est joué pour la partie menu.
 
-Menu version Épicé
+<a name="menu-version-epice"></a>Menu version Épicé
 ------------------
 Pour l'instant nous avons créé de simples entrées de menu. Mais que faire dans le cas où une même route affiche différente choses, comme dans le cadre d'un blog. J'ai une route *_article_blog* qui prend en paramètre *idArticle*.
 
@@ -118,7 +118,7 @@ Le KnpMenuBundle, par le biais de classes ``Voter``, fait la correspondance entr
 
 
 
-Menu version Über Épicé
+<a name="menu-version-uber-epice"></a>Menu version Über Épicé
 -----------------------
 Ce que nous avons vue précédemment n'est qu'un prémice. Corsons les choses en créant les parties du *Niveau 0* à *Niveau 5*.
 
@@ -156,7 +156,8 @@ $menu['Niveau 0']['Niveau 1']['Niveau 2']->addChild('Niveau 3.2', array('route' 
 ```
 
 
-Génération du BreadCrumb
+<a name="generation-du-breadcrumb"></a>Génération du BreadCrumb
 -------------------------
-Pour pouvoir générer un BreadCrumb nous allons simplement utiliser le [CnertaBreadcrumbBundle](https://github.com/AgrosupDijon-Eduter/BreadcrumbBundle)
+Pour pouvoir générer un BreadCrumb de qualité nous allons simplement utiliser
+le [CnertaBreadcrumbBundle](https://github.com/AgrosupDijon-Eduter/BreadcrumbBundle)
 
