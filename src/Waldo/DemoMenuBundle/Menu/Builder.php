@@ -11,9 +11,7 @@ class Builder extends ContainerAware
     public function menuPrincipal(FactoryInterface $factory, array $options)
     {
 
-        $menu = $factory->createItem('root');
-
-        $menu->addChild('Accueil', array('route' => '_welcome'));
+        $menu = $factory->createItem('Accueil', array('route' => '_welcome'));
 
         $menu->addChild('Utilisateurs', array('route' => '_utilisateur_list'));
         $menu['Utilisateurs']->addChild('Actif', array('route' => '_utilisateur_actif_list'));
